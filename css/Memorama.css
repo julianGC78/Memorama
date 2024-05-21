@@ -1,0 +1,165 @@
+@import url(./reset.css);
+
+body {
+  justify-content: center;
+  align-items: center;
+  background-image: url(../Photos/Cerebro_BN.jpg);
+  background-size: cover;
+  perspective: 1000;
+  display: flex;
+  flex-direction: column;
+
+  min-height: 100vh;
+  text-align: center;
+  position: relative;
+}
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(143, 135, 135, 0.601);
+}
+
+.tablero {
+  background-color: var(--AzulTablero);
+  padding: 20px;
+  margin: 0px 105px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  border-radius: 20px;
+  z-index: 2;
+}
+.conjuntoCarta,
+.cartaTrasera,
+.cartaFrontal {
+  cursor: pointer;
+  width: var(--w);
+  min-width: 100px;
+  max-width: 190px;
+  max-height: 120px;
+  min-height: 70px;
+  height: var(--h);
+}
+.conjuntoCarta {
+  position: relative;
+  margin: 4px;
+}
+.conjuntoCarta .cartaTrasera,
+.conjuntoCarta .cartaFrontal {
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 5px var(--Blanco);
+  position: absolute;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 400%;
+  transition: transform 0.5s linear 0s;
+}
+.cartaFrontal {
+  background-color: var(--AzulCarta);
+}
+.cartaTrasera {
+  transform: perspective(500px) rotateY(180deg);
+  background-color: var(--AzulOscuro);
+}
+.conjuntoCarta .girafront {
+  transform: perspective(500px) rotateY(0deg);
+}
+.conjuntoCarta .giraback {
+  transform: perspective(500px) rotateY(-180deg);
+}
+
+.niveles {
+  display: flex;
+  z-index: 2;
+}
+.fa-circle-question {
+  color: var(--Blanco);
+}
+
+/* Estilos de velo */
+.velo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(82, 82, 82, 0.8);
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.3s linear;
+}
+
+/* Estilos del mensaje ganador */
+.mensaje {
+  position: absolute;
+  background-color: var(--AzulTablero);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  z-index: 6;
+  opacity: 0;
+  transition: opacity 0.5s linear;
+}
+.velo.mostrar,
+.mensaje.mostrar {
+  opacity: 1;
+}
+
+.mensaje h2 {
+  font-size: 60px;
+}
+.mensaje button {
+  width: 180px;
+  height: 50px;
+}
+
+@keyframes temblor {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  75% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.temblor {
+  animation: temblor 0.5s ease-in-out;
+}
+@media (width < 900px) {
+  .conjuntoCarta,
+  .cartaTrasera,
+  .cartaFrontal {
+    min-width: 70px;
+    max-width: 120px;
+    max-height: 90px;
+    min-height: 40px;
+  }
+  .conjuntoCarta .cartaTrasera,
+  .conjuntoCarta .cartaFrontal {
+    font-size: 300%;
+  }
+  .tablero {
+    min-width: 50%;
+  }
+}
+
+@media (width < 1500px) {
+  .tablero {
+    min-width: 50%;
+  }
+}

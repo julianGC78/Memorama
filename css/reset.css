@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  :root {
+    --w: calc(70vw / 5);
+    --h: calc(70vh / 4);
+    --Amarillo: #f2ef04;
+    --AzulTablero: #6bb8d7;
+    --AzulFichas: #6bb8d7e7;
+    --AzulCarta: #b6ffff;
+    --AzulOscuro: #004173;
+    --AzulHome:  #0979b0;
+    --Verde:#008000;
+    --Rojo:#e10202;
+    --Blanco:#ffffff;
+    --Negro: #000000;
+    --Naranja:#f78429;
+    --texto:'Roboto Mono', monospace;
+    --Titulo: 'Shantell Sans', cursive;
+  }
+  a {
+    text-decoration: none;
+  }
+  .home{
+    font-size: 50px;
+    z-index: 6;
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    cursor: pointer;
+  }
+  .home i{
+    color: var(--AzulHome);
+  }
+  .home:hover i{
+    color: var(--Amarillo);
+  }
+  button{
+    background-color: var(--Amarillo);
+    padding: 7PX 15px;
+    font-size: 18px;
+    font-family: var(--texto);
+    border-radius: 10px;
+    margin: 20px;
+    color: var(--Negro);
+    border: solid 3px var(--Blanco);
+    cursor: pointer;
+  }

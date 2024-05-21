@@ -1,0 +1,38 @@
+[
+    {
+        "iconos": [
+            "<i class=\"fa-solid fa-code-branch\"></i>",
+            "<i class=\"fa-solid fa-square-rss\"></i>",
+            "<i class=\"fa-brands fa-gitkraken\"></i>",
+            "<i class=\"fa-brands fa-github\"></i>",
+            "<i class=\"fa-brands fa-firefox-browser\"></i>",
+            "<i class=\"fa-brands fa-css3-alt\"></i>",
+            "<i class=\"fa-solid fa-less-than-equal\"></i>",
+            "<i class=\"fa-brands fa-node-js\"></i>",
+            "<i class=\"fa-brands fa-jenkins\"></i>",
+            "<i class=\"fa-brands fa-debian\"></i>",
+            "<i class=\"fa-brands fa-bootstrap\"></i>",
+            "<i class=\"fa-brands fa-usb\"></i>",
+            "<i class=\"fa-brands fa-node\"></i>",
+            "<i class=\"fa-brands fa-java\"></i>",
+            "<i class=\"fa-solid fa-code\"></i>",
+            "<i class=\"fa-brands fa-wordpress\"></i>",
+            "<i class=\"fa-brands fa-docker\"></i>",
+            "<i class=\"fa-brands fa-stack-overflow\"></i>",
+            "<i class=\"fa-solid fa-cloud-arrow-up\"></i>",
+            "<i class=\"fa-solid fa-link\"></i>",
+            "<i class=\"fa-solid fa-bug\"></i>",
+            "<i class=\"fa-solid fa-server\"></i>",
+            "<i class=\"fa-brands fa-react\"></i>",
+            "<i class=\"fa-brands fa-python\"></i>",
+            "<i class=\"fa-brands fa-linux\"></i>",
+            "<i class=\"fa-brands fa-square-js\"></i>",
+            "<i class=\"fa-solid fa-cookie\"></i>",
+            "<i class=\"fa-brands fa-redhat\"></i>",
+            "<i class=\"fa-brands fa-php\"></i>",
+            "<i class=\"fa-brands fa-edge\"></i>",
+            "<i class=\"fa-brands fa-angular\"></i>",
+            "<i class=\"fa-brands fa-html5\"></i>"
+        ]
+    }
+]

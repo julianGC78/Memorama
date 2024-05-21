@@ -1,0 +1,177 @@
+@import url(./reset.css);
+body {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(../Photos/Cerebro_BN.jpg);
+  background-size: cover;
+}
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(143, 135, 135, 0.601);
+}
+
+section {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.tablero {
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  background-color: var(--AzulTablero);
+  box-shadow: 5px 4px 10px 5px;
+  margin-bottom: 100px;
+  z-index: 1;
+}
+button {
+  margin-bottom: 80px;
+  z-index: 4;
+  align-self: flex-end;
+}
+
+.contenedorBox {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  width: 650px;
+  height: 500px;
+}
+
+.contenedor-circulo,
+.contenedor-x {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 20%;
+  margin-top: 30px;
+}
+
+.box {
+  width: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 150px;
+  height: 150px;
+}
+
+.box:nth-child(3n + 0) {
+  border-left: solid 5px var(--Negro);
+}
+
+.box:nth-child(3n-1) {
+  border-left: solid 5px var(--Negro);
+}
+
+.box:nth-child(-n + 3) {
+  border-bottom: solid 5px var(--Negro);
+}
+
+.box:nth-child(1n + 7) {
+  border-top: solid 5px var(--Negro);
+}
+.x {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  color: var(--AzulOscuro);
+}
+.x i {
+  font-size: 80px;
+  padding: 5px;
+}
+.circulo i {
+  color: var(--AzulOscuro);
+  position: relative;
+  font-size: 70px;
+  padding: 10px;
+}
+
+.drag-over i {
+  color: var(--Naranja);
+}
+
+.fraseGanador {
+  position: absolute;
+  color: #71e457;
+  font-size: 70px;
+  z-index: 3;
+  margin-bottom: 100px;
+}
+
+.mensajeInicio {
+  position: absolute;
+  color: rgb(222, 222, 40);
+  font-size: 70px;
+  z-index: 3;
+  margin-bottom: 100px;
+}
+
+.velo-pagina {
+  display: none;
+  opacity: 0;
+  background-color: rgba(105, 105, 105, 0.849);
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  transition: all 0.5s linear;
+}
+
+@keyframes ponVelo {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* clases para javascript */
+.pon-velo {
+  display: block;
+  animation: ponVelo 1s linear forwards;
+}
+
+@media (width < 900px) {
+  .box {
+    width: 30%;
+    width: 80px;
+    height: 80px;
+  }
+  .contenedorBox {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    width: 300px;
+    height: 350px;
+  }
+  .x i {
+    font-size: 50px;
+    padding: 5px;
+  }
+  .circulo i {
+    position: relative;
+    font-size: 40px;
+    padding: 10px;
+  }
+}
