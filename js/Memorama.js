@@ -3,7 +3,7 @@ let contadorCartas = 0;
 window.onload = function () {
   let home = document.querySelector(".home ");
   home.addEventListener("click", function () { // funcion para redigir a index.
-    window.location.pathname = "index.html";
+    window.location.pathname = "./index.html";
   });
 
 

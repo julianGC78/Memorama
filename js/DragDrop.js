@@ -1,7 +1,7 @@
 window.onload = function () {
   let home = document.querySelector('.home');
   home.addEventListener('click', function () {
-    window.location.pathname = 'index.html';
+    window.location.pathname = './index.html';
   });
 
   let turnoActual;  // Variable para controlar el turno
