@@ -43,7 +43,7 @@ window.onload = function () {
 
     // Obtenemos los elementos del archivo JSON y los almacenamos en la variable 'listaIconos
     try {
-      const response = await fetch("/datos/iconos.json");
+      const response = await fetch("iconos.json");
       const data = await response.json();
 
       listaIconos = data[0].iconos;
