@@ -1,10 +1,12 @@
 window.onload = function () {
-  let home=document.querySelector('.home ');
-  home.addEventListener('click',function(){
-    window.location.pathname='index.html'
+  let home = document.querySelector('.home');
+  home.addEventListener('click', function () {
+    window.location.pathname = 'index.html';
   });
-  
-  // Funcion para crear elementos dinamicamente
+
+  let turnoActual;  // Variable para controlar el turno
+
+  // Función para crear elementos dinámicamente
   function crearElementos(contenedor, id, claseContenedor, claseElemento, icono, cantidad) {
     const contenedorElementos = document.createElement("div");
     contenedorElementos.classList.add(claseContenedor);
@@ -25,12 +27,13 @@ window.onload = function () {
     }
     contenedor.append(contenedorElementos);
   }
+
   // Agregar elementos creados al documento
   const tablero = document.querySelector(".tablero");
 
   crearElementos(tablero, "x", "contenedor-x", "x", "fa-solid fa-xmark", 5);
-  crearElementos(tablero,'box','contenedorBox', 'box','',9);
-  crearElementos(tablero,'c','contenedor-circulo','circulo',"fa-regular fa-circle",5);
+  crearElementos(tablero, 'box', 'contenedorBox', 'box', '', 9);
+  crearElementos(tablero, 'c', 'contenedor-circulo', 'circulo', "fa-regular fa-circle", 5);
 
   const xElements = document.querySelectorAll(".x");
   const circuloElements = document.querySelectorAll(".circulo");
@@ -39,13 +42,18 @@ window.onload = function () {
 
   // Función que se ejecuta cuando se inicia el arrastre
   function dragStart(e) {
-    e.dataTransfer.setData("text/plain", e.target.id); // Establece el ID del elemento como dato de transferencia
+    if ((turnoActual === "X" && e.target.classList.contains("x")) || (turnoActual === "O" && e.target.classList.contains("circulo"))) {
+      e.dataTransfer.setData("text/plain", e.target.id); 
+    } else {
+      e.preventDefault(); 
+    }
   }
+
   // Añade el evento 'dragstart' a todos los elementos 'x'
   for (const x of xElements) {
     x.addEventListener("dragstart", dragStart);
-    // x.addEventListener('dragend', dragEnd);
   }
+
   // Añade el evento 'dragstart' a todos los elementos 'circulo'
   for (const circulo of circuloElements) {
     circulo.addEventListener("dragstart", dragStart);
@@ -70,13 +78,17 @@ window.onload = function () {
     e.target.classList.add("drag-over");
   }
 
-  //Función que se ejecuta cuando se suelta el elemento arrastrado
+  // Función que se ejecuta cuando se suelta el elemento arrastrado
   function drop(e) {
+    e.preventDefault();  
     const id = e.dataTransfer.getData("text/plain");
     const draggable = document.getElementById(id);
 
-    e.target.append(draggable);
-    mostrarGanador();
+    if (e.target.classList.contains("box") && !e.target.querySelector("i")) {
+      e.target.append(draggable);
+      turnoActual = turnoActual === "X" ? "O" : "X";  // Cambia el turno
+      mostrarGanador();
+    }
   }
 
   // Función para verificar el ganador
@@ -99,7 +111,7 @@ window.onload = function () {
     for (const combinacion of comGanadoras) {
       const [a, b, c] = combinacion;
 
-      // Comprobamos que la casilla tenga un elemnto i y que ese elemnto sea X ó O
+      // Comprobamos que la casilla tenga un elemento i y que ese elemento sea X o O
       if (
         boxes[a].querySelector("i") &&
         boxes[a].querySelector("i").classList.contains("fa-xmark") &&
@@ -134,7 +146,7 @@ window.onload = function () {
     return null;
   }
 
-  // Funcion para mostrar el ganador
+  // Función para mostrar el ganador
   function mostrarGanador() {
     const ganador = verificarGanador();
     if (ganador !== null) {
@@ -147,7 +159,7 @@ window.onload = function () {
 
       fraseGanador.textContent = `${ganador}`;
 
-      // Eliminamos eventos de arrastyre cuando hay un ganador
+      // Eliminamos eventos de arrastre cuando hay un ganador
       for (const x of xElements) {
         x.removeEventListener("dragstart", dragStart);
       }
@@ -155,7 +167,7 @@ window.onload = function () {
         circulo.removeEventListener("dragstart", dragStart);
       }
 
-      for (box of boxes) {
+      for (const box of boxes) {
         box.removeEventListener("dragenter", dragEnter);
         box.removeEventListener("dragover", dragOver);
         box.removeEventListener("drop", drop);
@@ -171,18 +183,40 @@ window.onload = function () {
       fraseGanador.remove();
     }
     // Muestra el mensaje durante 2 segundos
-    const jugadorInicial = Math.random() < 0.5 ? " La X" : "  El Círculo";
+    const jugadorInicial = Math.random() < 0.5 ? "X" : "O";  // Ahora definimos quien empieza
 
     // Crear un elemento para mostrar el mensaje
     let section = document.querySelector("section");
     let mensajeInicio = document.createElement("h2");
     mensajeInicio.classList.add("mensajeInicio");
     section.append(mensajeInicio);
-    mensajeInicio.textContent = `Empieza: ${jugadorInicial}`;
+    mensajeInicio.textContent = `Empieza: ${jugadorInicial === "X" ? "La X" : "El Círculo"}`;
+
+    // Inicializa el turno según el mensaje
+    turnoActual = jugadorInicial;
 
     // Espera 2 segundos antes de recargar la página
     setTimeout(function () {
       location.reload();
     }, 2000);
   });
+
+  // Inicializar el juego al cargar la página
+  (function iniciarJuego() {
+    const jugadorInicial = Math.random() < 0.5 ? "X" : "O";  // Determina quién empieza
+    let section = document.querySelector("section");
+    let mensajeInicio = document.createElement("h2");
+    mensajeInicio.classList.add("mensajeInicio");
+    section.append(mensajeInicio);
+    mensajeInicio.textContent = `Empieza: ${jugadorInicial === "X" ? "La X" : "El Círculo"}`;
+
+    // Inicializa el turno según el mensaje
+    turnoActual = jugadorInicial;
+
+    // Espera 2 segundos antes de eliminar el mensaje inicial
+    setTimeout(function () {
+      mensajeInicio.remove();
+    }, 2000);
+  })();
 };
+

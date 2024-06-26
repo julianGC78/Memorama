@@ -14,17 +14,17 @@ window.onload = function () {
   const botonNivel3 = document.querySelector(".nivel3");
 
   botonNivel1.addEventListener("click", function () {
-    iniciarJuego(5, "75%",4);
+    iniciarJuego(5, "60%",4);
     mostrarMensaje("Estas en el nivel 1", 2000);
   });
 
   botonNivel2.addEventListener("click", function () {
-    iniciarJuego(9, "85%",10);
+    iniciarJuego(9, "70%",10);
     mostrarMensaje("Estas en el nivel 2", 2000); 
   });
 
   botonNivel3.addEventListener("click", function () {
-    iniciarJuego(12, "80%",20);
+    iniciarJuego(12, "72%",20);
     mostrarMensaje("Estas en el nivel 3", 2000);
   });
 
@@ -43,7 +43,7 @@ window.onload = function () {
 
     // Obtenemos los elementos del archivo JSON y los almacenamos en la variable 'listaIconos
     try {
-      const response = await fetch("../datos/iconos.json");
+      const response = await fetch("/datos/iconos.json");
       const data = await response.json();
 
       listaIconos = data[0].iconos;
